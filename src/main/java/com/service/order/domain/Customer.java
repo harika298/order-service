@@ -1,5 +1,7 @@
 package com.service.order.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,10 +14,12 @@ public class Customer {
 
     private String name;
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(columnDefinition = "add_id")
     private Address address;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = {CascadeType.ALL},
             targetEntity = Order.class)
     private List<Order> orderList;

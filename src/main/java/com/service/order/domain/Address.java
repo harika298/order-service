@@ -1,5 +1,7 @@
 package com.service.order.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,7 @@ public class Address {
     private String zip;
     private String contactNum;
 
+    @JsonBackReference
     @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
     private Customer customer;
 
